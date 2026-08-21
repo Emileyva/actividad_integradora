@@ -1,0 +1,20 @@
+/**
+ * Generador de espacios tipográficos
+ * ([nombre], [valor]) 
+ */
+$typeSpaces: (
+    ("en-space", 0.5em),
+    ("em-space", 1em),
+    ("third-space", calc(1em / 3)),
+    ("quarter-space", 0.25em),
+    ("sixth-space", calc(1em / 6)),
+    ("thin-space", calc(1em / 8)),
+    ("hair-space", calc(1em / 24))
+);
+
+@each $name, $value in $typeSpaces {
+    .#{$name} {
+        width: #{$value} !important;
+        display: inline-block;
+    }
+}

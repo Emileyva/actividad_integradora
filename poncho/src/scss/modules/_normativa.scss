@@ -1,0 +1,179 @@
+// Alineación de fecha - BO resultados tabla
+.dato-bora {
+display: grid;
+grid-template-columns: auto 1fr;
+gap: 2px 5px;
+}
+
+// Sticky bloque right  - 
+.blq-right-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  z-index: 10;
+  align-self: flex-start;
+  height: auto;
+
+  // Sticky mobile
+  @media (max-width: 991px) {
+    position: static;     
+    min-height: auto;    
+    align-self: stretch;  
+  }
+}
+
+// Bloque mobile
+@media (max-width: 991px) {
+  .blq-right-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .border-left {
+      border-left-width: 0;
+    }
+    .blq-right-subtit {
+      padding-left: 1em;
+    }
+      
+  }
+}
+
+
+.blq-right {
+  // Lista 
+  ul {
+    padding: 1.5rem 0.2rem;
+    margin: 0; 
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  i {
+    color: var(--arg-azul-600);
+    vertical-align: middle;
+    line-height: 2em;
+    padding: 3px;
+  }
+  li.active a {
+      font-weight: 700;
+    }
+    
+ // nav trámites
+  a {
+    text-decoration: none;
+  }
+  .btn {
+    font-size: 16px;
+  }
+}
+
+/* submenú bajo la versión de la norma */
+
+.card.card-body {
+  .blq-right-sub {
+    li {
+      display: flex;
+      align-items: center;
+      line-height: 1.5;
+
+      a {
+        font-size: 16px;
+        font-weight: normal;
+      }
+
+      &::before {
+        content: "–";
+        color: var(--arg-azul-500);
+        margin-right: 0.35rem;
+        top: 0;
+      }
+    }
+  }
+
+  ul.blq-right-sub {
+    padding: 0 0 0.5rem 0;
+    margin-bottom: 0rem;
+  }
+}
+
+
+
+
+
+
+
+
+/* Fecha de publicación y nro de boletín clickeable */
+
+.normativa {
+  margin: 20px 0;
+
+  dt,
+  dd {
+    display: inline;
+  }
+
+  dd {
+    white-space: nowrap;
+  }
+
+  .border-bottom {
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+  }
+}
+
+/* ajuste buscador texto predictivo */
+
+#argobar-consulta-infoleg-consulta-avanzada {
+  .select2 {
+    border:solid 1px var(--arg-negro-500)!important;
+    background:var(--arg-blanco);
+  }
+  .select2-container--default {
+    .select2-selection--single {
+      .select2-selection__placeholder {
+        color:var(--arg-negro-900);
+      }
+    }
+  }
+  .select2-container--disabled {
+    background:var(--arg-negro-75);
+    cursor:not-allowed;
+  }
+  .select2-container--default.select2-container--disabled {
+    .select2-selection--single {
+      background:var(--arg-negro-75);
+      cursor:not-allowed;
+    }
+  }
+}
+
+// IMPORTANTE:  bloque-leyes y bloque-leyes-mobile (Se usa en provincial)
+
+
+.bloque-leyes {
+  i {
+    color: var(--arg-azul-600);
+    vertical-align: middle;
+    line-height: 2em;
+    padding: 3px;
+  }
+
+  li.active a {
+    font-weight: 700;
+  }
+
+  padding: 1.5rem .2rem;
+  margin: 0px;
+  background:var(--arg-gris-niebla);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .bloque-leyes-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

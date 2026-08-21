@@ -1,0 +1,84 @@
+#{$scope} {
+    .filter-container {
+        position: absolute;
+        top: var(--pm-slider-distance);
+        left: var(--pm-slider-distance);
+        z-index: 999;
+        max-height: calc(100% - 80px);
+
+
+        .js-filters {
+            overflow: auto;
+        }
+
+        .poncho-map-filters {
+            max-height: calc(100% - 158px);
+            min-height: 150px;
+            display: none;
+            position: relative;
+            z-index: 998;
+            width: var(--pm-tools-width);
+            // padding-right: var(--pm-content-padding);
+            // padding-left: var(--pm-content-padding);
+            padding-right: 0;
+            padding-left: 0;
+            padding-top: calc(var(--pm-content-padding) * 2 + 10px);
+            padding-bottom: var(--pm-content-padding);
+            box-shadow: var(--pm-slider-shadow);
+            color: var(--pm-color-base);
+
+            // Define el estado abierto del panel de filtro.
+            &.filter--in {
+                display: block;
+            }
+
+            .pm-filters-content {
+                padding-right: var(--pm-content-padding);
+                padding-left: var(--pm-content-padding);
+                box-sizing: border-box;
+            }
+
+            // Contenedor de fieldsets
+            .field-list {
+                min-height: 40px;
+                max-height: calc(100% - 110px);
+                overflow: auto;
+                width: calc(100% - 15px);
+            }
+
+            legend {
+                color: var(--pm-color-primary);
+                margin-bottom: 0.75em;
+                opacity: 1;
+            }
+
+            fieldset {
+                border: none;
+            }
+            label { font-weight: 400;}
+
+            // setea el color para el fondo de los checkbox e inputs.
+            input[type="checkbox"],
+            input[type="radio"] {
+                accent-color: var(--pm-link) !important;
+            }
+
+            // Estilo para el estado indeterminate del checkbox "marcar todos"
+            input[type="checkbox"]:indeterminate {
+                opacity: 0.7;
+            }
+
+            // parche fix hasta que se use bootstrap > 4
+            .form-check {
+                display: flex;
+                align-items: baseline;
+                gap: .5rem;
+                padding-left: 1px;
+            }
+
+            .form-check .form-check-label {
+                color: var(--pm-color-base) !important;
+            }
+        }
+    }
+}

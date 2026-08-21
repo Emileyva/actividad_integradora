@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://capacita-back.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css?rfqjsh">
+    <link rel="stylesheet" href="../../../../dist/css/poncho.min.css" />
+    <!-- 
+        Script para debug 
+        Se reemplazan en producción por poncho.min.js
+    -->
+    <script src="../../utils/char-map.js"></script>
+    <script src="../../utils/connect/connect.js"></script>
+    <script src="../../utils/copy-to-clipboard/copy-to-clipboard.js"></script>
+    <script src="../../utils/head-style/head-style.js"></script>
+    <script src="../../utils/secure-html/secure-html.js"></script>
+    <script src="../../utils/replace-special-chars/replace-special-chars.js"></script>
+    <script src="../../utils/slugify/slugify.js"></script>
+    <script src="../../utils/to-title-case/to-title-case.js"></script>
+    <script src="../../utils/secure-html/secure-html.js"></script>
+    <script src="../src/js/poncho-map.js"></script>
+    <script src="../src/js/poncho-map-filter.js"></script>
+    <script src="../src/js/poncho-map-search.js"></script>
+    <script src="../src/js/poncho-map-helpers.js"></script>
+    <script src="../src/js/poncho-map-schema.js"></script>
+    <script src="../../gapi-sheet-data/gapi-sheet-data.js"></script>
+    <!-- / Script para debug -->
+    <title>Poncho Map — Template 5</title>
+    <style>
+        html, body { height: 100%;}
+    </style>
+</head>
+<body>
+
+    <div class="demo-nav container">
+        <ul class="demo-menu">
+            <li><a href="./">Inicio</a></li>
+        </ul>
+    </div>
+
+<div class="container">
+    <div class="row">
+
+<h1>Template 5</h1>
+<!-- 
+MAPA CON BUSCADOR FILTRO  
+
+COPIAR DESDE ACÁ…
+-->
+<div class="col-md-12">
+
+<!-- PONCHO SEARCH -->
+<search aria-label="Buscar puntos en el mapa">
+    <form>
+        <div data-scope="poncho-map-search-2">
+            <label class="sr-only" for="search">Buscar ubicación</label>
+            <div class="input-group m-b-0 p-b-0 webform-component">
+                <input 
+                    class="js-poncho-map-search__input form-control" 
+                    id="search" 
+                    list="js-porcho-map-search__list" 
+                    name="search" 
+                    autocomplete="on"
+                    spellcheck="true" 
+                    type="search"> 
+                <datalist 
+                    class="js-porcho-map-search__list" 
+                    id="js-porcho-map-search__list">
+                </datalist>
+                <span class="input-group-btn">
+                    <button 
+                        class="js-poncho-map-search__submit btn btn-primary" 
+                        type="submit">
+                        <i class="fa fa-search text-white"></i>
+                        <span class="sr-only">Buscar término</span>
+                    </button> 
+                </span>
+            </div>
+            <div data-scope="ponchomap">
+                <div class="js-poncho-map__help small"></div>
+            </div>
+        </div>
+    </form>
+</search>
+<!-- / PONCHO SEARCH -->
+
+
+
+</div>
+<div class="col-md-12">
+<!-- PONCHO MAP -->
+<div class="poncho-map" data-scope="poncho-map">
+    <div
+        class="leaflet-container leaflet-touch leaflet-fade-anim 
+              leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        id="map"
+        style="height: 600px; width: 100%;"
+        tabindex="0">
+    </div>
+</div>
+<!-- / PONCHO MAP -->
+ 
+<div data-code-from="example" class="m-y-2"></div>
+</div>
+</div>
+</div>
+
+<!-- INCLUDE SCRIPTS -->
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/extensiones/showdown-extensions.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+<script src="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/leaflet.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.css" rel="stylesheet"/> 
+<link href="https://mapa-ign.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css" rel="stylesheet"/> 
+<!-- / INCLUDE SCRIPTS -->
+
+
+<!-- SCRIPTS -->
+<script id="example">
+    /**
+     * Marker HTML con iconos Poncho, FontAwesome o similares.
+     * 
+     * @autor Agustín Bouillet <bouilleta@jefatura.gob.ar>
+     * @see https://argob.github.io/poncho/identidad/iconos/
+     * @see https://fontawesome.com/
+     * @param {string} color Nombre de color Poncho
+     * @param {string} icon Nombre del icono Poncho, FontAwesome o similares.
+     * @param {object} options Objeto con opciones: 
+     * @property {boolean} options.container Define si el icono tiene o 
+     * no, un contenedor.
+     * @property {boolean} options.invert Define si el color se usa de 
+     * fondo o figura. 
+     * @example
+     * // returns Retorna un icono color mandarina, con el dibugo de un cannabis,
+     * // sin contenedor,
+     * iconPoncho("mandarina", "icono-arg-cannabis-medicinal-1",
+     *            {container:false, invert:false})
+     * @return {undefined}
+     */ 
+    const iconPoncho = (color, icon, options={}) => {
+        const {container=true, invert=false} = options;
+        color = ponchoColor(color);
+        let foreground = (invert ? "#FFFFFF" : color);
+        let border = (!container ? '' : `border:2px solid ${color};`);
+        let background = "#FFFFFF";
+        if(invert){
+            background = color;
+        } else if(!container) {
+            background = "";
+        }
+        return new L.divIcon({
+            html: 
+                `<a class="poncho-map__div-icon" 
+                    style="background:${background};${border}">
+                    <i class="${icon}" style="color: ${foreground}"></i>
+                </a>`,
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [-3, -40]
+        });
+    };
+
+    /**
+     * Icono tipo imagen
+     * @param {string} url URI de la imagen.
+     * @return {undefined}
+     */
+    const iconImg = (url) => {
+        return new L.icon({
+            iconUrl: url,
+            iconSize: [41, 41],
+            iconAnchor: [22, 41],
+            popupAnchor: [-3, -40]
+        });
+    };
+
+    // init
+    (async() => {
+    // GApi helpers
+    // Obtengo el JSON desde GoogleSheet
+    const gapi = new GapiSheetData();
+    const googlesheet_data = await fetch_json("./data/test-data.json");
+    const gapi_data = gapi.json_data(googlesheet_data);
+    let {headers={}, entries={}} = gapi_data;
+
+    // map options
+    const options = {
+        scope: "poncho-map",
+        id: "id",
+        headers: headers,
+        filters_info: false,
+        title: "nombre",
+        template_innerhtml: true,
+        template_markdown: true,
+        allowed_tags: ["a", "h1", "p", "strong", "i", "img"],
+        template_structure: {
+            title_classlist: ["h4","text-arandano","m-t-0"],
+            definition_list_classlist: ["definition-list"],
+            term_classlist: ["h6", "m-b-0", "text-arandano"],
+            _definition_classlist: ["text-default", "prueba", "table"],
+            definition_list_tag: "div",
+            term_tag: "h3",
+            definition_tag: "div",
+            lead: {
+                key: "type",
+                css: (self, entry, value) => {
+                    if(entry.type == "Polygon"){
+                        return "badge bg-verdin text-white";
+                    } else if(entry.type == "Point"){
+                        return "badge bg-arandano text-white";
+                    } else if(entry.type == "LineString"){
+                        return "badge bg-cielo text-white";
+                    }
+                    return false;
+                },
+                style: "background-color:gold; border-radius:6px;"
+                    + " padding:.25em .75em !important;"
+            },
+            title: "nombre",
+            _values: [
+                "title",
+                "id",
+                "direccion",
+                "test",
+                "description",
+                "email",
+                "ubicacion"
+            ],
+            mixing:
+                [
+                    {
+                        key: "direccion",
+                        header: "Cannabis",
+                        values: ["id", "title",],
+                        separator: ", ",
+
+                    },
+                    {
+                        key: "ubicacion",
+                        header: "Ubicación",
+                        values: ["municipio_nombre", "provincia"],
+                        separator: ", ",
+                    },
+                ],
+        },
+        header_icons: [
+            {
+                key: "title",
+                css: "icono-arg-cannabis-medicinal-1 text-primary"
+            },
+            {
+                key: "direccion",
+                html: `<i aria-hidden="true"
+                            class="icono-arg-cannabis-medicinal-1 text-verdin">
+                        </i>`
+
+            },
+            {
+                key: "id",
+                css: "icono-arg-sitios-accesibles text-arandano",
+                style: "margin-bottom:3em"
+            }
+        ],
+        marker: (self, ele) => {
+            const icon_color = (ele.hasOwnProperty("icon_color")) ? ele.icon_color : "azul";
+            const img_url = "https://cdn0.iconfinder.com/data/icons/maps-and-navigation-2-1/52/86-512.png";
+            const id = (ele.hasOwnProperty("ID")) ? ele.ID : false;
+            const icon = (ele.hasOwnProperty("icon")) ? ele.icon : false;
+
+            if(id == "8"){
+                return iconPoncho(icon_color, icon, {container:true, invert:true});
+            } else if (id == "13"){
+                return iconPoncho(icon_color, icon, {container:true, invert:false});
+            } else if (id == "9"){
+                return iconPoncho(icon_color, icon, {container:true, invert:true});
+            } else if (id == "5"){
+                return self.icon(icon_color);
+            } else if (id == "2"){
+                return "arandano";
+            }
+            return iconImg(img_url);
+        },
+        no_info: false,
+        slider: true,
+        hash: true,
+        scroll: true,
+        filters_info: true,
+        filters: [
+            {
+                legend: "Filtrar por título",
+                field: ["tipo", "checked"],
+                fields: false,
+                check_uncheck_all: true,
+            },
+            {
+                legend: "Filtrar por provincia",
+                field: ["filtro-provincia", "checked"],
+                fields: false,
+                check_uncheck_all: true,
+            },
+        ],
+        check_uncheck_all: true
+    };
+    const map = new PonchoMapFilter(entries, options);
+    map.render();
+
+    const search_options = {
+        combobox: true,
+        text: "title",
+        "scope": "poncho-map-search-2", 
+        "placeholder": "Buscar en el geoJSON",
+        "search_fields": [
+            "name",
+            "nombre",
+            "tipo",
+            "color",
+            "uri_imagen",
+            "descripcion_test",
+            "direccion",
+            "telefono",
+            "email",
+            "filtro-provincia",
+            "localidad",
+            "latitud",
+            "longitud",
+            "btn-Ver",
+            "id",
+            "ubicacion",
+            "imagen",
+            "boton"
+        ]
+    };
+
+
+    
+    const search = new PonchoMapSearch(map, search_options);
+    search.render();
+
+})();
+</script>
+
+<script src="../../mapa-argentina/demo/js/demo.js"></script>
+
+<!-- / SCRIPTS -->
+</body>
+</html>
