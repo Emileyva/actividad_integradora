@@ -1,0 +1,204 @@
+/* Estilos para la navegación sidebar en trámites */
+.sticky {
+    padding-bottom: 1em;
+    position: sticky;
+    display: block;
+    top: 2rem;
+    right: 0;
+    z-index: 2;
+    min-height: calc(100vh - 1rem);
+    margin-bottom: 1rem;
+}
+
+.accionmodal {
+    font-size: 0.8rem;
+    line-height: 2.5;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+
+/* NAV */
+.tramite-accion {
+    padding-top: 10px;
+    text-align: left;
+}
+
+.nav-accion {
+    p {
+        font-size: 0.9rem;
+        margin: 2px 0px;
+    }
+
+    ul {
+        display: block;
+        font-size: 0.8rem;
+        list-style-type: disc;
+        padding: 0 1rem 1rem;
+        margin-top: 0px;
+    }
+
+    li {
+        display: list-item;
+        font-weight: normal;
+    }
+
+    a {
+        color: #141414;
+        line-height: 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+/* / NAV */
+
+
+/* Enlaces y archivos de descarga */
+h3.accion-pasos {
+    padding-top: #{$space-xs};
+}
+
+.accion-pasos {
+    border-top: #{$border-medium} solid #{$brand-arg-info};
+    font-weight: #{$fw-semibold};
+    @include family-sans-serif-attributes;
+}
+
+ul.list-accion {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: #{$grid-gutter-width};
+    row-gap: #{$grid-gutter-width};
+    align-items: start;
+
+    > li {
+        padding: 0px;
+        background-color: transparent;
+        font-size: 0.9rem;
+        width: auto !important;
+        margin: 0px;
+        vertical-align: text-top;
+        list-style: none;
+        align-items: start;
+
+        a.btn {
+            margin-bottom: 0;
+            display: table;
+        }
+    }
+}
+
+@media (max-width: 1180px) {
+    ul.list-accion {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+#descargas {
+    margin-top: 40px;
+}
+/* / Enlaces y archivos de descarga */
+
+
+@media (max-width: 992px) {
+    .tramite-accion p {
+        font-size: 0.9rem;
+        margin: 2px 0px;
+    }
+    #tramites {
+        margin-top: 20px;
+    }
+}
+
+
+/*lista ordenada*/
+.servicio-timeline {
+    list-style: none;
+    counter-reset: step;
+    margin: 0;
+    padding-left: 2.7em;
+    position: relative;
+
+    > li {
+        position: relative;
+        counter-increment: step;
+        margin-bottom: 2em;
+
+        &::before {
+            content: counter(step);
+            position: absolute;
+            left: -2.5em;
+            top: 0;
+            background: $brand-arg-azul;
+            color: $white;
+            border-radius: 50%;
+            text-align: center;
+            z-index: 1;
+            width: 32px;
+            line-height: 32px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: -1.6em;
+            top: 2em;
+            width: 1px;
+            height: 100%;
+            background-color: $gray-border;
+            z-index: 0;
+        }
+
+        &:last-child::after {
+            content: none;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .servicio-timeline li {
+        padding-left: 0.4em;
+    }
+}
+
+
+/** 
+ * Trámites (iconos)
+ */
+.tramites-iconos .panel-default {
+    border: none !important;
+    margin-bottom: 5px !important;
+}
+
+.tramites-iconos {
+    text-align: center !important;
+}
+
+.tramites-iconos .media-left {
+    display: block;
+    padding: 0 !important;
+}
+
+.tramites-iconos .media-left i {
+    padding: 20px;
+    margin: 0 auto 15px auto;
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
+    color: #fff !important;
+    vertical-align: middle;
+}
+
+.tramites-iconos .media-left i.fa {
+    padding: 30px 20px 20px 20px;
+}
+
+.tramites-iconos .panel h3,
+.tramites-iconos .panel .h3 {
+    color: $black;
+}

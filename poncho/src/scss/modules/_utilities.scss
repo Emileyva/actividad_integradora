@@ -1,0 +1,325 @@
+$sides: (
+    "": "",
+    "-top": "-top",
+    "-bottom": "-bottom",
+    "-right": "-right",
+    "-left": "-left"
+);
+
+// Border
+@each $suffix, $property-part in $sides {
+    .border#{$suffix} {
+        --border-color: var(--arg-gray-light);
+
+        border#{$property-part}-style: solid !important;
+        border#{$property-part}-width: $border-light !important;
+        border#{$property-part}-color: var(--border-color) !important;
+    }
+}
+
+// Clases para eliminar bordes (border-0)
+@each $suffix, $property-part in $sides {
+    .border#{$suffix}-0 {
+        border#{$property-part}: 0 !important;
+    }
+}
+
+// Color para los bordes
+@each $key, $value in $colores {
+    .border-#{$key} {
+        --border-color: var(--#{$key});
+    }
+}
+// opacidad
+@each $value in [25, 50, 75] {
+    .border-color-#{$value} {
+        border-color: color-mix(in srgb, var(--border-color) #{$value * 1%}, transparent) !important;
+    }
+}
+// Ancho del borde
+.border-medium {
+    border-width: $border-medium !important;
+}
+.border-thick {
+    border-width: $border-thick !important;
+}
+.border-heavy {
+    border-width: $border-heavy !important;
+}
+
+
+/**
+ * Generador de variables tipográficas 
+ * ([nombre], [valor]) 
+ */
+$configTypeWeights: (
+    ("thin", $fw-thin),
+    ("extra-light", $fw-extra-light),
+    ("light", $fw-light),
+    ("normal", $fw-normal),
+    ("medium", $fw-medium),
+    ("semibold", $fw-semibold),
+    ("bold", $fw-bold),
+    ("extra-bold", $fw-extra-bold),
+    ("black", $fw-black)
+);
+
+@each $name, $value in $configTypeWeights {
+    .fw-#{$name} {
+        font-weight: #{$value} !important;
+    }
+}
+
+/**
+ * Generador de espacios gap
+ * ([nombre], [valor]) 
+ */
+$gapSpacer : 1;
+$configGap: (
+    (0, 0),
+    (1, $gapSpacer * .25),
+    (2, $gapSpacer * .5),
+    (3, $gapSpacer),
+    (4, $gapSpacer * 1.5),
+    (5, $gapSpacer * 3),
+);
+
+
+@each $name, $value in $configGap {
+    .gap-#{$name} {
+        gap: #{$value}rem;
+    }
+}
+
+
+/**
+ * Generador de espacios 
+ * ([nombre], [valor]) 
+ */
+$configSpaces: (
+    (auto, $space-auto),
+    (0, $space-0),
+    ("xs", $space-xs),
+    ("05", $space-05),
+    (1, $space-1),
+    (2, $space-2),
+    (3, $space-3),
+    (4, $space-4)
+);
+
+
+
+
+
+@each $name, $value in $configSpaces {
+    @if $name !=auto {
+        .p-#{$name} {
+            padding: #{$value} !important;
+        }
+
+        .p-t-#{$name} {
+            padding-top: #{$value} !important;
+        }
+
+        .p-r-#{$name} {
+            padding-right: #{$value} !important;
+        }
+
+        .p-b-#{$name} {
+            padding-bottom: #{$value} !important;
+        }
+
+        .p-l-#{$name} {
+            padding-left: #{$value} !important;
+        }
+
+        .p-x-#{$name} {
+            padding-right: #{$value} !important;
+            padding-left: #{$value} !important;
+        }
+
+        .p-y-#{$name} {
+            padding-top: #{$value} !important;
+            padding-bottom: #{$value} !important;
+        }
+    }
+
+    .m-a-#{$name},
+    .m-#{$name} {
+        margin: #{$value} !important;
+    }
+
+    .m-t-#{$name} {
+        margin-top: #{$value} !important;
+    }
+
+    .m-r-#{$name} {
+        margin-right: #{$value} !important;
+    }
+
+    .m-b-#{$name} {
+        margin-bottom: #{$value} !important;
+    }
+
+    .m-l-#{$name} {
+        margin-left: #{$value} !important;
+    }
+
+    .m-x-#{$name} {
+        margin-right: #{$value} !important;
+        margin-left: #{$value} !important;
+    }
+
+    .m-y-#{$name} {
+        margin-top: #{$value} !important;
+        margin-bottom: #{$value} !important;
+    }
+}
+
+.pos-f-t {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+.text-nowrap {
+    white-space: nowrap !important;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+// As bootstrap 5.3.0
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.font-sans-serif {
+    font-family: $font-family-sans-serif;
+}
+
+.font-serif {
+    font-family: $font-family-serif;
+}
+
+.font-base {
+    font-family: $font-family-base;
+}
+
+.smaller {
+    font-size: 0.833em;
+}
+
+@media (max-width: 575.98px) {
+    .text-xs-left {
+        text-align: left !important;
+    }
+
+    .text-xs-right {
+        text-align: right !important;
+    }
+
+    .text-xs-center {
+        text-align: center !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .text-sm-left {
+        text-align: left !important;
+    }
+
+    .text-sm-right {
+        text-align: right !important;
+    }
+
+    .text-sm-center {
+        text-align: center !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .text-md-left {
+        text-align: left !important;
+    }
+
+    .text-md-right {
+        text-align: right !important;
+    }
+
+    .text-md-center {
+        text-align: center !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .text-lg-left {
+        text-align: left !important;
+    }
+
+    .text-lg-right {
+        text-align: right !important;
+    }
+
+    .text-lg-center {
+        text-align: center !important;
+    }
+}
+
+.img .img-rounded {
+    border-radius: 10px;
+}
+
+.panel-heading {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+
+pre {
+    border: solid 1px #ddd;
+}
+
+// Grupo de atajos
+.atajos-agrupados .h2 {
+    margin-bottom: 1.35em;
+    margin-top: 2.25em;
+}
+
+.atajos-agrupados .lead {
+    margin-bottom: 0.26em;
+}
+
+// Misma altura del contenedor de atajos
+.atajos-agrupados {
+    display: flex;
+    flex-wrap: wrap;
+}

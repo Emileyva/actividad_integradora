@@ -1,0 +1,76 @@
+#{$scope} {
+    .pm-btn-close {
+        @include borderRadius(50%);
+        aspect-ratio: 1 / 1;
+        position: absolute;
+        background-image: none;
+        width: auto;
+        height: auto;
+        // top: var(--pm-slider-distance);
+        // right: var(--pm-slider-distance);
+        top: 7px;
+        right: 7px;
+        background-color: rgb(0 0 0 / 0.1);
+        color: var(--pm-color-base);
+    }
+
+
+    // Botón para hacer un toggle con los filtros
+    .pm-btn-rounded-circle {
+        aspect-ratio: 1 / 1;
+        width: 40px;
+        height: 40px;
+        @include borderRadius(50%);
+    }
+
+    .pm-btn-xs {
+        font-size: 14px;
+    padding: 1px 5px;
+    }
+
+ .btn {
+
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+
+  text-transform: inherit;
+  vertical-align: top;
+  white-space: normal;
+  word-break: initial;
+  text-decoration: none;
+  letter-spacing: inherit;
+  @include borderRadius(30px);
+  line-height: 1.42857143;
+ }
+
+
+    .pm-btn {
+        background: var(--pm-slider-background, white);
+        box-shadow: var(--pm-slider-shadow);
+        line-height: 35px;
+        color: var(--pm-color-base);
+        text-align: center;
+        border: var(--pm-slider-border-width) solid var(--pm-slider-border-color);
+        display: flex;
+        text-align: center;
+        
+        &:focus {
+            @include borderRadius(50%);
+        }
+    }
+
+    .pm-btn:hover {
+        background-color: var(--pm-hover-background);
+        color: var(--pm-hover-color);
+    }
+
+
+    /*
+    Botones menú filter
+    */
+    .select-items {
+        border-bottom: 1px solid var(--pm-slider-border-color);
+        margin-bottom: .5rem;
+    }
+}

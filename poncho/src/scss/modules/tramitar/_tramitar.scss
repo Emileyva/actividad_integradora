@@ -1,0 +1,109 @@
+/* CONTENIDO DE LA PAGINA TRAMITAR V1.1 */
+
+.desplegable-tramitar {
+    /**
+	 *	Modifica las variables para details global.
+     *	@see https://github.com/argob/poncho/blob/master/src/scss/modules/_details.scss
+	 */
+    &.details-container {
+        --container-border-color: var(--arg-azul);
+        --container-border-width: 2px;
+        --container-border-radius: 8px;
+    }
+
+    // Agrego el border bottom al summary cuando está abierto
+    &.details-container > .ar-details[open] > .ar-details__title {
+        border-bottom: 2px solid var(--arg-azul);
+        transition: 0s;
+    }
+
+    // asignación para el ul
+    &__lista > li {
+        margin-bottom: 4px;
+    }
+
+
+    .items-desplegable-tramitar {
+        $margin: 0.45em;
+
+        display: grid;
+        grid-template-columns: 1.75em 1fr 1.25em;
+        align-items: center;
+        gap: 5px;
+        padding: #{$margin};
+        border-radius: 6px;
+        margin: auto calc(#{$margin} * -1);
+        text-decoration: none;
+        transition: background 0.2s ease-in-out;
+
+        &:hover {
+            text-decoration: none;
+            background-color: var(--arg-primary-50);
+        }
+
+        & > i {
+            width: 100%;
+            text-align: center;
+        }
+
+        &.activo:hover,
+        &.activo {
+            background: var(--arg-azul-50);
+            color: var(--arg-azul-700);
+        }
+
+        &.activo {
+            .icon-select-margin {
+                &::before {
+                    content: "\f046";
+                }
+            }
+        }
+
+        .icon-select-margin {
+            &::before {
+                content: "\f096";
+            }
+        }
+    }
+}
+
+
+.items-desplegable-tramitar-select {
+    border: 3px solid var(--arg-verde);
+    border-radius: 15px;
+    padding: 5px;
+    margin: 8px;
+    height: auto;
+}
+
+
+.f-rigth {
+    float: right;
+}
+
+
+.bdr-l {
+    margin: 20px 0px;
+    float: right;
+}
+
+
+.listas-destacadas {
+    ul.search-results {
+        li {
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 991px) {
+    .jumbotron_body {
+        img[alt="tramitar"] {
+            width: 60%;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>gob.ar |  Parser markdown</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet'
+        href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet'
+        href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css'>
+    <link rel='stylesheet'
+        href='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css'>
+    <link rel="stylesheet" href="../demo/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/html-format@1.1.7/index.min.js"></script>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="container">
+        <div class="row pt-2">
+            <div class='col-md-12'>
+                <h1 class="h3">
+                    <span class="text-arg-cielo font-sans-serif">gob.ar</span> 
+                    <span class="text-arg-default fw-extra-light font-sans-serif">|</span> 
+                    <span class="text-arg-azul">Parser markdown JavaScript</span>
+                </h1>
+                <div>
+                    <textarea name="texto_libre" class="form-control mb-2" id="texto_id" cols="78" rows="8"></textarea>
+                </div>
+                <button id="parse" class="btn btn-info m-t-1 m-b-2">
+                    Convertir
+                </button>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="details-container details-container__round m-b-4" style="background:var(--arg-negro-600); color: white">
+                    <details class="js-details ar-details caret-light">
+                        <summary class="ar-details__title">Código HTML</summary>
+                        <div class="ar-details__content">
+                            <pre id="show_code"></pre>
+                        </div>
+                    </details>
+                </div>
+
+                <div id="show_parsed_id" class="col pt-4"></div>
+            </div>
+        </div>
+
+
+
+    <!-- partial -->
+    <script src='https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/js/poncho.min.js'></script>
+    <script src='https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js'></script>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+    <!-- <script src="../dist/showdown-extensions.js"></script> -->
+
+    <script src="../src/utils.js"></script>
+    <script src="../src/alert.js"></script>
+    <script src="../src/image.js"></script>
+    <script src="../src/table.js"></script>
+    <script src="../src/button.js"></script>
+    <script src="../src/details.js"></script>
+    <script src="../src/eje.js"></script>
+    <script src="../src/numbers.js"></script>
+    <script src="../src/target.js"></script>
+    <script src="../src/video.js"></script>
+<!-- <script src="../dist/showdown-extensions.js"></script> -->
+
+
+    <script src="../demo/js/script.js"></script>
+
+</body>
+</html>

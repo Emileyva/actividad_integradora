@@ -1,0 +1,244 @@
+/**
+ * Estilos para el calendario de feriados nacionales.
+ *
+ * @summary Refactor de los estilos para el calendario. Con este nuevo
+ * abordaje se soluciona la altura de la caja de cada mes, optimizando
+ * cada línea.
+ *
+ * @author Agustín Bouillet <bouilleta@jefatura.gob.ar>
+ */
+
+/**
+ * Fija el color de texto en todos los estados de interacción, evitando
+ * que el navegador o Bootstrap lo sobreescriban en hover/focus/active.
+ *
+ * @param {color} $color Color a mantener en los estados interactivos.
+ */
+@mixin interaction-color($color) {
+    &:hover,
+    &:focus-within,
+    &:focus,
+    &:active,
+    &:active:focus {
+        color: $color;
+    }
+}
+
+.national-holidays {
+    --icon-universal-access: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZD0iTTAgMjU2YTI1NiAyNTYgMCAxIDEgNTEyIDBBMjU2IDI1NiAwIDEgMSAwIDI1NnptMTYxLjUtODYuMWMtMTIuMi01LjItMjYuMyAuNC0zMS41IDEyLjZzLjQgMjYuMyAxMi42IDMxLjVsMTEuOSA1LjFjMTcuMyA3LjQgMzUuMiAxMi45IDUzLjYgMTYuM3Y1MC4xYzAgNC4zLS43IDguNi0yLjEgMTIuNmwtMjguNyA4Ni4xYy00LjIgMTIuNiAyLjYgMjYuMiAxNS4yIDMwLjRzMjYuMi0yLjYgMzAuNC0xNS4ybDI0LjQtNzMuMmMxLjMtMy44IDQuOC02LjQgOC44LTYuNHM3LjYgMi42IDguOCA2LjRsMjQuNCA3My4yYzQuMiAxMi42IDE3LjggMTkuNCAzMC40IDE1LjJzMTkuNC0xNy44IDE1LjItMzAuNGwtMjguNy04Ni4xYy0xLjQtNC4xLTIuMS04LjMtMi4xLTEyLjZWMjM1LjVjMTguNC0zLjUgMzYuMy04LjkgNTMuNi0xNi4zbDExLjktNS4xYzEyLjItNS4yIDE3LjgtMTkuMyAxMi42LTMxLjVzLTE5LjMtMTcuOC0zMS41LTEyLjZMMzM4LjcgMTc1Yy0yNi4xIDExLjItNTQuMiAxNy04Mi43IDE3cy01Ni41LTUuOC04Mi43LTE3bC0xMS45LTUuMXpNMjU2IDE2MGE0MCA0MCAwIDEgMCAwLTgwIDQwIDQwIDAgMSAwIDAgODB6Ii8+PC9zdmc+');
+
+    .display-block {
+        display: block;
+    }
+
+
+    .calendar,
+    .calendar * {
+        box-sizing: border-box;
+    }
+
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: min-content;
+        grid-column-gap: 2.5em;
+        grid-row-gap: 1em;
+        clear: both;
+    }
+
+    .month table td {
+        border-color: transparent
+    }
+
+    .month table {
+        table-layout: fixed;
+    }
+
+
+    .calendar__holiday-td {
+        position: relative;
+    }
+
+    .calendar__holiday-td mark {
+        background: transparent;
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a.calendar__holiday {
+        font-weight: 600;
+        text-decoration: none;
+        position: absolute;
+        height: calc(100% - 2px);
+        width: calc(100% - 2px);
+        border-radius: 6px;
+        aspect-ratio: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .15s;
+        border: 3px solid transparent;
+    }
+
+    .calendar__holiday:focus,
+    .calendar__holiday:focus-within,
+    .calendar__holiday:hover {
+        outline: none;
+        border: 3px solid var(--arg-amarillo) !important;
+        text-decoration: none;
+        box-shadow: 0 2px 3px rgb(0 0 0 / .1);
+    }
+
+    .table {
+        border-bottom: 1px solid #ddd
+    }
+
+    /* Colors */
+    .bg-transparent {
+        background-color: transparent !important;
+        color: inherit;
+    }
+
+    .bg-success {
+        color: white;
+        @include interaction-color(white);
+    }
+
+    .bg-nl {
+        background-color: #c1c1c1;
+        color: black;
+        @include interaction-color(black);
+    }
+
+    .bg-turistico {
+        background-color: var(--arg-uva);
+        color: white;
+        @include interaction-color(white);
+    }
+
+    .bg-primary {
+        color: white;
+        @include interaction-color(white);
+    }
+
+    .bg-turistico,
+    .bg-success,
+    .bg-primary,
+    .bg-nl {
+        font-weight: 500;
+    }
+
+    .text-nl {
+        color: #c1c1c1;
+    }
+
+    .text-turistico {
+        color: var(--arg-uva);
+    }
+
+    /* Cuenta regresiva */
+    .conteo-regresivo-dias {
+        font-size: 70px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0px;
+    }
+
+    .nh-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        padding: 1px;
+        line-height: 1.5em;
+        vertical-align: -15%;
+        -webkit-mask-origin: fill-box;
+        -webkit-mask-repeat: no-repeat !important;
+        -webkit-mask-size: contain;
+        mask-repeat: no-repeat !important;
+        mask-size: contain;
+        mask-origin: fill-box;
+
+        &.universal-access {
+            -webkit-mask-image: var(--icon-universal-access);
+            mask-image: var(--icon-universal-access);
+            background-color: var(--arg-cielo, dodgerblue);
+        }
+    }
+
+    .jump-to-list {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .sr-only-focusable:focus {
+        background: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        color: black;
+        box-shadow: 0 1px 8px rgb(0 0 0 / .2);
+        outline-color: var(--arg-cielo, inherit);
+        outline-width: 2px;
+        outline-style: solid;
+        display: block
+    }
+}
+
+/* References */
+@media (min-width: 768px) {
+    .national-holidays {
+        .references {
+            padding-left: 0;
+            padding-right: 0;
+
+            .media {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            .media-body {
+                width: initial;
+                vertical-align: middle;
+            }
+
+            .media-body p {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .national-holidays {
+        .calendar {
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 2.5em;
+        }
+
+        .conteo-regresivo-dias {
+            font-size: calc(1.375rem + 4vw);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .national-holidays {
+        .calendar {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}

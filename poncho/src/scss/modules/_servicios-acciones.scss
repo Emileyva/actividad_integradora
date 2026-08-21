@@ -1,0 +1,58 @@
+.nav-menu {
+    display: block !important;
+    top: 5rem;
+    right: 0;
+    z-index: 2;
+    height: calc(100vh - 22rem);
+    margin-bottom: 1rem !important;
+}
+
+.nav-accion {
+    p {
+        font-size: 0.9rem;
+    }
+
+    ul {
+        display: block;
+        font-size: 0.8rem;
+        list-style-type: disc;
+        padding: 0 1rem 1rem;
+        margin-top: 0px;
+    }
+
+    li {
+        display: list-item;
+        font-weight: normal;
+    }
+
+    a {
+        color: $black;
+        line-height: 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.tramite-accion {
+    padding-top: 1rem;
+    text-align: left;
+}
+
+.accionmodal {
+    font-size: 0.8rem;
+    line-height: 2.5;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+/* FIN MODAL */
+@media (max-width: 1180px) {
+    .list-accion > li {
+        width: 98%;
+        margin: 1%;
+    }
+}
