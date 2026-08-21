@@ -1,0 +1,3 @@
+* **¿Hubo conflictos?** Sí.
+* **¿En qué archivos?** En el archivo `README.md`.
+* **¿Cómo se solucionó?** Ocurrió porque agregamos información al final del `README.md` de manera simultánea en dos ramas distintas (herramientas web en `main` y detalles de Poncho en `proyectos`). Se solucionó abriendo el archivo, eliminando las marcas divisorias generadas por Git y unificando el texto para conservar ambas secciones.
